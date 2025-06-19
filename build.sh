@@ -119,7 +119,12 @@ cmake .. -DCMAKE_C_COMPILER=gcc \
          ${EXTRA_CMAKE_FLAGS} -GNinja
 [[ "$OSTYPE" == "darwin"* ]] && NUM_JOBS="$(($(sysctl -n hw.ncpu)/2))" || NUM_JOBS="$(($(nproc --all)/2))"
 echo "Starting ninja build with up to ${NUM_JOBS} parallel jobs..."
-ninja -j ${NUM_JOBS}
+if [ -z "$DISPLAY" ]; then
+    echo "No display detected. Wrapping ninja in xvfb-run..."
+    xvfb-run --auto-servernum --server-args='-screen 0 1024x768x24' ninja -j "${NUM_JOBS}"
+else
+    ninja -j "${NUM_JOBS}"
+fi
 
 if [ -n "${MAKE_DEB}" ]
 then

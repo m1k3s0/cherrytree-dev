@@ -59,6 +59,13 @@ const Glib::ustring bufferContent_2{
 
 TEST(ListsGroup, CtListInfo_2)
 {
+	// Ensures GTK is initialized without needing a display (important for headless/container tests)
+	int argc = 0;
+	char **argv = nullptr;
+	if (!gtk_init_check(&argc, &argv)) {
+		std::cerr << "Failed to initialize GTK without display\n";
+	}
+	
     Glib::init();
     auto pTextTagTable = Gtk::TextTagTable::create();
     // I'm struggling to Glib::wrap the GtkSourceBuffer from here, this is otherwise incorrect and should
