@@ -22,10 +22,10 @@ CONTAINER_NAME="cpp-build-container"
 # Check for required build tools
 # -------------------------------------------------------------
 # podman is used to set up a container using Dockerfile
-# newuidmap & newgidmap needed for container namespace mapping
+# uidmap provides newuidmap & newgidmap needed for container namespace mapping
 # slirp4netns is needed for a rootless container network
 # runtime libs needed for running CT binary
-REQUIRED_TOOLS=(podman newuidmap newgidmap slirp4netns)
+REQUIRED_TOOLS=(podman uidmap slirp4netns)
 RUNTIME_LIBS_DEB=(libgtksourceview-4-0 libgspell-1-2 libfmt9)
 RUNTIME_LIBS_RHEL=(gtksourceview4 gspell fmt)
 RUNTIME_LIBS_ARCH=(gtksourceview4 gspell fmt)

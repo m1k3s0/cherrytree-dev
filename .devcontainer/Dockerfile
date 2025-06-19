@@ -14,6 +14,7 @@ RUN . /etc/os-release && \
           libfribidi-dev libvte-2.91-dev libfmt-dev libspdlog-dev \
           file libxml2-utils xvfb texlive-latex-base dvipng \
           libgirepository1.0-dev gobject-introspection libglibmm-2.4-dev \
+          libxml++2.6-2v5 libgtkmm-3.0-1v5 \
         && rm -rf /var/lib/apt/lists/*; \
     elif [ "$ID" = "fedora" ]; then \
         dnf install -y \
