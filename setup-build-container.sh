@@ -1,6 +1,8 @@
 #!/usr/bin/env bash
 
 set -e
+unset HISTFILE
+set +o history
 
 # Select distro image to build with
 echo "Select base image:"
